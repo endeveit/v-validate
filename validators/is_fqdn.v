@@ -18,13 +18,13 @@ pub fn is_fqdn(hostname string) bool {
 	}
 
 	// validate the TLD
-	if parts.len == 1 {
+	if parts.len < 2 {
 		return false
 	}
 
 	tld := parts.last()
 
-	mut re_fqdn_tld, _, _ := regex.regex(r'^([a-z]{2,}|xn[-a-z0-9]{2,})$')
+	mut re_fqdn_tld, _, _ := regex.regex(r'^([a-zA-Z]{2,}|xn[-a-zA-Z0-9]{2,})$')
 	start, _ := re_fqdn_tld.match_string(tld)
 	if start < 0 {
 		return false
@@ -38,7 +38,7 @@ pub fn is_fqdn(hostname string) bool {
 	}
 
 	// check the rest of the string
-	mut re_fqdn_base, _, _ := regex.regex(r'^[-a-z0-9]+$')
+	mut re_fqdn_base, _, _ := regex.regex(r'^[-a-zA-Z0-9]+$')
 	mut start_base := 0
 
 	for part in parts {
