@@ -1,33 +1,31 @@
 module validators
 
-import regex
-
 const (
-	re_any = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
-	re_v3 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-3[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
-	re_v4 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89ABab][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$'
-	re_v5 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-5[a-fA-F0-9]{3}-[89ABab][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$'
+	re_uuid_any = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
+	re_uuid_v3 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-3[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
+	re_uuid_v4 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89ABab][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$'
+	re_uuid_v5 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-5[a-fA-F0-9]{3}-[89ABab][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$'
 	uuid_length = 36
 )
 
 // check if the string is ana valid UUID
 pub fn is_uuid(uuid string) bool {
-	return is_uuid_priv(uuid, re_any)
+	return is_uuid_priv(uuid, re_uuid_any)
 }
 
 // check if the string is ana valid UUID v3
 pub fn is_uuid_v3(uuid string) bool {
-	return is_uuid_priv(uuid, re_v3)
+	return is_uuid_priv(uuid, re_uuid_v3)
 }
 
 // check if the string is ana valid UUID v4
 pub fn is_uuid_v4(uuid string) bool {
-	return is_uuid_priv(uuid, re_v4)
+	return is_uuid_priv(uuid, re_uuid_v4)
 }
 
 // check if the string is ana valid UUID v5
 pub fn is_uuid_v5(uuid string) bool {
-	return is_uuid_priv(uuid, re_v5)
+	return is_uuid_priv(uuid, re_uuid_v5)
 }
 
 fn is_uuid_priv(uuid string, re_query string) bool {
@@ -41,8 +39,5 @@ fn is_uuid_priv(uuid string, re_query string) bool {
 		return false
 	}
 
-	mut re, _, _ := regex.regex(re_query)
-	start, _ := re.match_string(uuid)
-
-	return start != regex.no_match_found
+	return is_regex_match(uuid, re_query)
 }

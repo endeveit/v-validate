@@ -5,7 +5,9 @@
  */
 module validators
 
-import regex
+const (
+	re_email_local_part = '^(?:[-a-zA-Z0-9!#$%&.\'*+/=?^_`{|}~]+)|"(?:[-a-zA-Z0-9!#$%&.\'*+/=?^_`{|}~]+)"$'
+)
 
 // check if the string is a valid email address
 pub fn is_email(email string) bool {
@@ -15,9 +17,7 @@ pub fn is_email(email string) bool {
 	}
 
 	// let's check the local part
-	mut re_local, _, _ := regex.regex('^(?:[-a-zA-Z0-9!#$%&\.\'*+/=?^_`{|}~]+)|"(?:[-a-zA-Z0-9!#$%&\.\'*+/=?^_`{|}~]+)"$')
-	start, _ := re_local.match_string(parts[0])
-	if start == regex.no_match_found {
+	if !is_regex_match(parts[0], re_email_local_part) {
 		return false
 	}
 
