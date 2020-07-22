@@ -6,11 +6,13 @@ fn test_is_bool() {
 		'1',
 		'f',
 		'false',
+		'n',
 		'no',
 		'off',
 		'on',
 		't',
 		'true',
+		'y',
 		'yes',
 	]
 

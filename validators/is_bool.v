@@ -9,11 +9,13 @@ const (
 		'1',
 		'f',
 		'false',
+		'n',
 		'no',
 		'off',
 		'on',
 		't',
 		'true',
+		'y',
 		'yes',
 	]
 )
