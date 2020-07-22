@@ -26,14 +26,14 @@ pub fn is_fqdn(hostname string) bool {
 
 	mut re_fqdn_tld, _, _ := regex.regex(r'^([a-zA-Z]{2,}|xn[-a-zA-Z0-9]{2,})$')
 	start, _ := re_fqdn_tld.match_string(tld)
-	if start < 0 {
+	if start == regex.no_match_found {
 		return false
 	}
 
 	// disallow spaces in the TLD
 	mut re_fqdn_space, _, _ := regex.regex(r'[\s]')
 	start_spaces, _ := re_fqdn_space.match_string(tld)
-	if start_spaces > 0 {
+	if start_spaces != regex.no_match_found {
 		return false
 	}
 
@@ -43,7 +43,7 @@ pub fn is_fqdn(hostname string) bool {
 
 	for part in parts {
 		start_base, _ = re_fqdn_base.match_string(part)
-		if start_base < 0 {
+		if start_base == regex.no_match_found {
 			return false
 		}
 

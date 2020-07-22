@@ -17,7 +17,7 @@ pub fn is_email(email string) bool {
 	// let's check the local part
 	mut re_local, _, _ := regex.regex('^(?:[-a-zA-Z0-9!#$%&\.\'*+/=?^_`{|}~]+)|"(?:[-a-zA-Z0-9!#$%&\.\'*+/=?^_`{|}~]+)"$')
 	mut start, _ := re_local.match_string(parts[0])
-	if start < 0 {
+	if start == regex.no_match_found {
 		return false
 	}
 
