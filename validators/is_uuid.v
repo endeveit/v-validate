@@ -42,7 +42,7 @@ fn is_uuid_priv(uuid string, re_query string) bool {
 	}
 
 	mut re, _, _ := regex.regex(re_query)
-	mut start, _ := re.match_string(uuid)
+	start, _ := re.match_string(uuid)
 
 	return start != regex.no_match_found
 }

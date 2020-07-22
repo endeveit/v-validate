@@ -3,7 +3,7 @@ module validators
 import regex
 
 const (
-	re_float = r'^(?:[-+]?(?:[0-9]+))?(?:\.[0-9]*)?(?:[eE][\+\-]?(?:[0-9]+))?$'
+	re_float = r'^(?:[-+]?(?:[0-9]+))?(?:\.[0-9]*)?(?:[eE][-+]?(?:[0-9]+))?$'
 )
 
 // check if the string is a float
