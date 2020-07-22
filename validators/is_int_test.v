@@ -11,6 +11,7 @@ fn test_is_int() {
 	invalid := [
 		'',
 		'a12',
+		'2.4',
 	]
 
 	for v in valid {
