@@ -19,7 +19,7 @@ const (
 	]
 )
 
-// convert the string to a boolean value
+// converts the string to a boolean value
 pub fn to_bool(val string) ?bool {
 	v := val.trim_space().to_lower()
 

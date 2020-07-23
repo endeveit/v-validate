@@ -1,10 +1,8 @@
-/**
- * The built-in str.bool() method is limited to only 'true' and 't' strings
- */
 module validators
 
 const (
-	vals = [
+	// The built-in str.bool() method is limited to only 'true' and 't' strings
+	bool_possible_vals = [
 		'0',
 		'1',
 		'f',
@@ -20,7 +18,7 @@ const (
 	]
 )
 
-// check if the string is a boolean
+// checks if the string is a boolean
 pub fn is_bool(val string) bool {
-	return val.to_lower() in vals
+	return val.to_lower() in bool_possible_vals
 }

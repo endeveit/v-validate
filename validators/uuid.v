@@ -1,33 +1,34 @@
 module validators
 
 const (
-	re_uuid_any = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
-	re_uuid_v3 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-3[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
-	re_uuid_v4 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89ABab][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$'
-	re_uuid_v5 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-5[a-fA-F0-9]{3}-[89ABab][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$'
+	uuid_re_any = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
+	uuid_re_v3 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-3[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
+	uuid_re_v4 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89ABab][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$'
+	uuid_re_v5 = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-5[a-fA-F0-9]{3}-[89ABab][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$'
 	uuid_length = 36
 )
 
-// check if the string is ana valid UUID
+// checks if the string is a valid UUID
 pub fn is_uuid(uuid string) bool {
-	return is_uuid_priv(uuid, re_uuid_any)
+	return is_uuid_priv(uuid, uuid_re_any)
 }
 
-// check if the string is ana valid UUID v3
+// checks if the string is a valid UUID v3
 pub fn is_uuid_v3(uuid string) bool {
-	return is_uuid_priv(uuid, re_uuid_v3)
+	return is_uuid_priv(uuid, uuid_re_v3)
 }
 
-// check if the string is ana valid UUID v4
+// checks if the string is a valid UUID v4
 pub fn is_uuid_v4(uuid string) bool {
-	return is_uuid_priv(uuid, re_uuid_v4)
+	return is_uuid_priv(uuid, uuid_re_v4)
 }
 
-// check if the string is ana valid UUID v5
+// checks if the string is a valid UUID v5
 pub fn is_uuid_v5(uuid string) bool {
-	return is_uuid_priv(uuid, re_uuid_v5)
+	return is_uuid_priv(uuid, uuid_re_v5)
 }
 
+// private function used by is_uuid* functions
 fn is_uuid_priv(uuid string, re_query string) bool {
 	// A UUID is a 128-bit value and to represent 128 bit into
 	// the hex string there are 128/4=32 chars (each char is 4bit
