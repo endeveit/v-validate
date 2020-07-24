@@ -72,13 +72,13 @@ fn test_is_le() {
 	}
 }
 
-fn get_data_eq_ne() (map[string]CommonDst, map[string]CommonDst) {
-	mut valid := map[string]CommonDst
+fn get_data_eq_ne() (map[string]CommonType, map[string]CommonType) {
+	mut valid := map[string]CommonType
 	valid['string'] = 'string'
 	valid['2'] = 2
 	valid['3.14'] = 3.14
 
-	mut invalid := map[string]CommonDst
+	mut invalid := map[string]CommonType
 	invalid['string'] = 'string-2'
 	invalid['2'] = 3
 	invalid['2.71'] = 3.14
@@ -86,13 +86,13 @@ fn get_data_eq_ne() (map[string]CommonDst, map[string]CommonDst) {
 	return valid, invalid
 }
 
-fn get_data_gt_lt() (map[string]CommonDst, map[string]CommonDst) {
-	mut valid := map[string]CommonDst
+fn get_data_gt_lt() (map[string]CommonType, map[string]CommonType) {
+	mut valid := map[string]CommonType
 	valid['ab'] = 'aa'
 	valid['3'] = 2
 	valid['3.14'] = 1.61
 
-	mut invalid := map[string]CommonDst
+	mut invalid := map[string]CommonType
 	invalid['aa'] = 'ab'
 	invalid['2'] = 3
 	invalid['1.61'] = 1.61
@@ -100,8 +100,8 @@ fn get_data_gt_lt() (map[string]CommonDst, map[string]CommonDst) {
 	return valid, invalid
 }
 
-fn get_data_ge_le() (map[string]CommonDst, map[string]CommonDst) {
-	mut valid := map[string]CommonDst
+fn get_data_ge_le() (map[string]CommonType, map[string]CommonType) {
+	mut valid := map[string]CommonType
 	valid['ab'] = 'aa'
 	valid['aa'] = 'aa'
 	valid['3'] = 2
@@ -109,7 +109,7 @@ fn get_data_ge_le() (map[string]CommonDst, map[string]CommonDst) {
 	valid['3.14'] = 1.61
 	valid['6.28'] = 6.28
 
-	mut invalid := map[string]CommonDst
+	mut invalid := map[string]CommonType
 	invalid['aa'] = 'ab'
 	invalid['2'] = 3
 	invalid['1.41'] = 1.64
