@@ -14,6 +14,7 @@ Validator             | Description
 is_bool               | checks if the string is a bool
 is_eq                 | checks if the string is equal to another int, float or string value
 is_ne                 | checks if the string is not equal to another int, float or string value
+is_in                 | checks if the string is in an array of allowed values
 is_gt                 | checks if the string is greater than another int, float or string value
 is_ge                 | checks if the string is greater or equal to another int, float or string value
 is_lt                 | checks if the string is less than another int, float or string value

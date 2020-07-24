@@ -72,6 +72,27 @@ fn test_is_le() {
 	}
 }
 
+fn test_is_in() {
+	mut valid := []CommonType{}
+	valid << 'abc'
+	valid << 2
+	valid << 0.69
+
+	assert is_in('abc', valid) == true
+	assert is_in('2', valid) == true
+	assert is_in('0.69', valid) == true
+
+	// this is the edge case and will pass the test because '2.302'
+	// will be rounded to 2 after casting to int
+	assert is_in('2.302', valid) == true
+
+	invalid := ['ab', '3', '1.4142']
+
+	for val in invalid {
+		assert is_in(val, valid) == false
+	}
+}
+
 fn get_data_eq_ne() (map[string]CommonType, map[string]CommonType) {
 	mut valid := map[string]CommonType
 	valid['string'] = 'string'

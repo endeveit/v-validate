@@ -56,3 +56,14 @@ pub fn is_lt(val string, dst CommonType) bool {
 pub fn is_le(val string, dst CommonType) bool {
 	return is_lt(val, dst)
 }
+
+// checks if the string is in an array of allowed values
+pub fn is_in(val string, values []CommonType) bool {
+	for v in values {
+		if is_eq(val, v) {
+			return true
+		}
+	}
+
+	return false
+}
