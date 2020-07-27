@@ -5,6 +5,21 @@ module validators
 // be changed in the future.
 pub type CommonType = any_int | any_float | string
 
+// converts the common type to the string
+fn (c CommonType) str() string {
+	match c {
+		any_int {
+			return c.str()
+		}
+		any_float {
+			return c.str()
+		}
+		string {
+			return c
+		}
+	}
+}
+
 // checks if the string is equal to another int, float or string value
 pub fn is_eq(val string, dst CommonType) bool {
 	// FIXME: stop using references after this bug is fixed https://github.com/vlang/v/issues/5948
