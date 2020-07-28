@@ -5,12 +5,12 @@ const (
 	numbers_re_int = r'^(?:[-+]?(?:0|[1-9][0-9]*))$'
 )
 
-// checks if the string is a float
+// Checks if the string is a float
 pub fn is_float(val string) bool {
 	return is_number_priv(val, numbers_re_float)
 }
 
-// checks if the string is an integer
+// Checks if the string is an integer
 pub fn is_int(val string) bool {
 	return is_number_priv(val, numbers_re_int)
 }

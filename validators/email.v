@@ -7,7 +7,7 @@ const (
 	email_re = '^(?:[-a-zA-Z0-9!#$%&.\'*+/=?^_`{|}~]+)|"(?:[-a-zA-Z0-9!#$%&.\'*+/=?^_`{|}~]+)"$'
 )
 
-// checks if the string is a valid email address
+// Checks if the string is a valid email address
 pub fn is_email(email string) bool {
 	parts := email.split('@')
 	if parts.len != 2 {

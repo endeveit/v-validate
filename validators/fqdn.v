@@ -7,7 +7,7 @@ const (
 	fqdn_re_tld = r'^([a-zA-Z]{2,}|xn[-a-zA-Z0-9]{2,})$'
 )
 
-// checks if the string is a Fully Qualified Domain Name
+// Checks if the string is a Fully Qualified Domain Name
 pub fn is_fqdn(hostname string) bool {
 	parts := hostname.split('.')
 

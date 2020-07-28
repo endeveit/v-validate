@@ -8,22 +8,22 @@ const (
 	uuid_length = 36
 )
 
-// checks if the string is a valid UUID
+// Checks if the string is a valid UUID
 pub fn is_uuid(uuid string) bool {
 	return is_uuid_priv(uuid, uuid_re_any)
 }
 
-// checks if the string is a valid UUID v3
+// Checks if the string is a valid UUID v3
 pub fn is_uuid_v3(uuid string) bool {
 	return is_uuid_priv(uuid, uuid_re_v3)
 }
 
-// checks if the string is a valid UUID v4
+// Checks if the string is a valid UUID v4
 pub fn is_uuid_v4(uuid string) bool {
 	return is_uuid_priv(uuid, uuid_re_v4)
 }
 
-// checks if the string is a valid UUID v5
+// Checks if the string is a valid UUID v5
 pub fn is_uuid_v5(uuid string) bool {
 	return is_uuid_priv(uuid, uuid_re_v5)
 }

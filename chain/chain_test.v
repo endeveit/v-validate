@@ -5,7 +5,7 @@ import validators
 fn test_chain() {
 	mut valid := []validators.CommonType{}
 	valid << 'y'
-	valid << validators.CommonType(1)
+	valid << 1
 	valid << 'Y'
 
 	mut ch := new_chain()

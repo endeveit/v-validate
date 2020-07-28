@@ -30,19 +30,20 @@ struct Chain {
 		errors []Option
 }
 
-// returns new validation chain
+// Returns the new validation chain
 pub fn new_chain() &Chain {
 	return &Chain{}
 }
 
-// stops running validations if any of the previous ones have failed
+// Stops running validations if any of the previous ones have failed.
+// Useful to prevent a custom validator that touches a database or external API from running when you know it will fail.
 pub fn (mut c Chain) bail() &Chain {
 	c.bails << c.callbacks.len - 1
 
 	return c
 }
 
-// validates the provided value with all the validators in the chain
+// Runs the validation chain against the provided value
 pub fn (mut c Chain) validate(val string) bool {
 	mut is_valid := true
 
@@ -80,6 +81,7 @@ pub fn (mut c Chain) validate(val string) bool {
 	return is_valid
 }
 
+// an internal function that adds simple validators like `is_bool` to the chain.
 fn (mut c Chain) add_simple(cb CallbackSignatureSimple, cnf CallbackConfigSimple) &Chain {
 	c.callbacks << Callback(CallbackSimple{
 		callback: cb
@@ -89,6 +91,8 @@ fn (mut c Chain) add_simple(cb CallbackSignatureSimple, cnf CallbackConfigSimple
 	return c
 }
 
+// an internal function that adds validators like `is_ge` to the chain.
+// these validators are usually comparing the value with another
 fn (mut c Chain) add_comparable(cb CallbackSignatureComparable, cnf CallbackConfigComparable) &Chain {
 	c.callbacks << Callback(CallbackComparable{
 		callback: cb
@@ -98,6 +102,8 @@ fn (mut c Chain) add_comparable(cb CallbackSignatureComparable, cnf CallbackConf
 	return c
 }
 
+// an internal function that adds validators like `is_in` to the chain.
+// these validators are usually checking the value against the array of []CommonType
 fn (mut c Chain) add_comparable_array(cb CallbackSignatureComparableArray, cnf CallbackConfigComparableArray) &Chain {
 	c.callbacks << Callback(CallbackComparableArray{
 		callback: cb
