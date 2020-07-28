@@ -2,7 +2,7 @@ module validators
 
 import regex
 
-// checks if regular expression syntax is correct
+// Checks if regular expression syntax is correct
 pub fn is_regex_valid(re_query string) bool {
 	mut re := regex.new_regex()
 	re_err, _ := re.compile(re_query)
@@ -10,7 +10,7 @@ pub fn is_regex_valid(re_query string) bool {
 	return re_err == regex.compile_ok
 }
 
-// checks if the string matches the regular expression
+// Checks if the string matches the regular expression
 pub fn is_regex_match(val string, re_query CommonType) bool {
 	mut re, _, _ := regex.regex(re_query.str())
 	start, _ := re.match_string(val)

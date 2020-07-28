@@ -18,7 +18,7 @@ const (
 	]
 )
 
-// checks if the string is a boolean
+// Checks if the string is a boolean
 pub fn is_bool(val string) bool {
 	return val.to_lower() in bool_possible_vals
 }
