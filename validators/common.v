@@ -1,21 +1,15 @@
 module validators
 
-// The validators here work only with string, any_int, and any_float types.
-// n.b.: any_int and any_float are internal intermediate types and could
-// be changed in the future.
-pub type CommonType = any_int | any_float | string
+pub type CommonType = i8 | i16 | int | i64 | u16 | u32 | u64 | f32 | f64 | string
 
 // converts the common type to the string
 fn (c CommonType) str() string {
 	match c {
-		any_int {
-			return c.str()
-		}
-		any_float {
-			return c.str()
-		}
 		string {
 			return c
+		}
+		else {
+			return c.str()
 		}
 	}
 }
@@ -24,10 +18,31 @@ fn (c CommonType) str() string {
 pub fn is_eq(val string, dst CommonType) bool {
 	// FIXME: stop using references after this bug is fixed https://github.com/vlang/v/issues/5948
 	match dst {
-		any_int {
+		i8 {
+			return val.i8() == *dst
+		}
+		i16 {
+			return val.i16() == *dst
+		}
+		int {
 			return val.int() == *dst
 		}
-		any_float {
+		i64 {
+			return val.i64() == *dst
+		}
+		u16 {
+			return val.u16() == *dst
+		}
+		u32 {
+			return val.u32() == *dst
+		}
+		u64 {
+			return val.u64() == *dst
+		}
+		f32 {
+			return val.f32() == *dst
+		}
+		f64 {
 			return val.f64() == *dst
 		}
 		string {
@@ -45,10 +60,31 @@ pub fn is_ne(val string, dst CommonType) bool {
 pub fn is_gt(val string, dst CommonType) bool {
 	// FIXME: stop using references after this bug is fixed https://github.com/vlang/v/issues/5948
 	match dst {
-		any_int {
+		i8 {
+			return val.i8() > *dst
+		}
+		i16 {
+			return val.i16() > *dst
+		}
+		int {
 			return val.int() > *dst
 		}
-		any_float {
+		i64 {
+			return val.i64() > *dst
+		}
+		u16 {
+			return val.u16() > *dst
+		}
+		u32 {
+			return val.u32() > *dst
+		}
+		u64 {
+			return val.u64() > *dst
+		}
+		f32 {
+			return val.f32() > *dst
+		}
+		f64 {
 			return val.f64() > *dst
 		}
 		string {
