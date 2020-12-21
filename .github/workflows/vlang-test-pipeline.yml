@@ -7,16 +7,26 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: Run tests on ${{ matrix.os }} ${{ matrix.v-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        # v-version: [latest, master, 0.1.30]
+        v-version: [latest, 0.1.30]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up V version latest
-        uses: nocturlab/setup-vlang-action@v1
+      - name: Setup V version ${{ matrix.v-version }}
+        uses: nocturlab/setup-vlang-action@v1.2.0
         with:
-          v-version: latest
+          v-version: ${{ matrix.v-version }}
         id: v
+
+      - name: Test V is present
+        run: v version
 
       - name: Run V tests
         run: v test .
