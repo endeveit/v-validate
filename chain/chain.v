@@ -2,9 +2,9 @@ module chain
 
 import validators
 
-type CallbackSignatureSimple fn(string) bool
-type CallbackSignatureComparable fn(string, validators.CommonType) bool
-type CallbackSignatureComparableArray fn(string, []validators.CommonType) bool
+type CallbackSignatureSimple = fn(string) bool
+type CallbackSignatureComparable = fn(string, validators.CommonType) bool
+type CallbackSignatureComparableArray = fn(string, []validators.CommonType) bool
 
 struct CallbackSimple {
 	config CallbackConfigSimple
@@ -27,7 +27,7 @@ struct Chain {
 	mut:
 		bails []int
 		callbacks []Callback
-		errors []Option
+		errors []string
 }
 
 // Returns the new validation chain
@@ -45,6 +45,8 @@ pub fn (mut c Chain) bail() &Chain {
 
 // Runs the validation chain against the provided value
 pub fn (mut c Chain) validate(val string) bool {
+	c.errors = []string{}
+
 	mut is_valid := true
 
 	for i, cb in c.callbacks {
@@ -56,7 +58,7 @@ pub fn (mut c Chain) validate(val string) bool {
 			err = cb.config.err()
 		} else if cb is CallbackComparable {
 			arg := cb.config.dst()
-			result = cb.callback(val, &arg)
+			result = cb.callback(val, arg)
 
 			if !result {
 				err = cb.config.err().replace('{{compared}}', arg.str())
@@ -69,7 +71,7 @@ pub fn (mut c Chain) validate(val string) bool {
 		if !result {
 			is_valid = false
 
-			c.errors << error(err)
+			c.errors << err
 
 			// check if we need to keep validating the value
 			if i in c.bails {
@@ -79,6 +81,11 @@ pub fn (mut c Chain) validate(val string) bool {
 	}
 
 	return is_valid
+}
+
+// Returns list of the validation errors
+pub fn (c Chain) get_errors() []string {
+	return c.errors
 }
 
 // an internal function that adds simple validators like `is_bool` to the chain.
