@@ -1,52 +1,52 @@
 module validators
 
-pub type CommonType = i8 | i16 | int | i64 | u16 | u32 | u64 | f32 | f64 | string
+// This type is being used in validators that compare value against another,
+// it's a sum type of the string, any_int, and any_float.
+// <br>
+// n.b.: any_int and any_float are internal intermediate types and could be changed in the future.
+pub type CommonType = any_int | any_float | string
 
 // Converts the common type to the string
 fn (c CommonType) str() string {
 	match c {
-		string {
-			return (*c)
+		any_int {
+			return c.str()
 		}
-		else {
-			return (*c).str()
+		any_float {
+			return c.str()
+		}
+		string {
+			return (c)
 		}
 	}
 }
 
 // Checks if the string is equal to another int, float or string value
 pub fn is_eq(val string, dst CommonType) bool {
-	// FIXME: stop using references after this bug is fixed https://github.com/vlang/v/issues/5948
 	match dst {
-		i8 {
-			return val.i8() == *dst
+		any_int {
+			return val.int() == dst
 		}
-		i16 {
-			return val.i16() == *dst
-		}
-		int {
-			return val.int() == *dst
-		}
-		i64 {
-			return val.i64() == *dst
-		}
-		u16 {
-			return val.u16() == *dst
-		}
-		u32 {
-			return val.u32() == *dst
-		}
-		u64 {
-			return val.u64() == *dst
-		}
-		f32 {
-			return val.f32() == *dst
-		}
-		f64 {
-			return val.f64() == *dst
+		any_float {
+			return val.f64() == dst
 		}
 		string {
-			return val == *dst
+			return val == dst
+		}
+	}
+}
+
+// Checks if the string is greater than another int, float or string value
+pub fn is_gt(val string, dst CommonType) bool {
+	match dst {
+		any_int {
+			return val.int() > dst
+		}
+		any_float {
+			return val.f64() > dst
+		}
+		string {
+			return val > dst
 		}
 	}
 }
@@ -54,43 +54,6 @@ pub fn is_eq(val string, dst CommonType) bool {
 // Checks if the string is not equal to another int, float or string value
 pub fn is_ne(val string, dst CommonType) bool {
 	return !is_eq(val, dst)
-}
-
-// Checks if the string is greater than another int, float or string value
-pub fn is_gt(val string, dst CommonType) bool {
-	// FIXME: stop using references after this bug is fixed https://github.com/vlang/v/issues/5948
-	match dst {
-		i8 {
-			return val.i8() > *dst
-		}
-		i16 {
-			return val.i16() > *dst
-		}
-		int {
-			return val.int() > *dst
-		}
-		i64 {
-			return val.i64() > *dst
-		}
-		u16 {
-			return val.u16() > *dst
-		}
-		u32 {
-			return val.u32() > *dst
-		}
-		u64 {
-			return val.u64() > *dst
-		}
-		f32 {
-			return val.f32() > *dst
-		}
-		f64 {
-			return val.f64() > *dst
-		}
-		string {
-			return val > *dst
-		}
-	}
 }
 
 // Checks if the string is greater or equal to another int, float or string value

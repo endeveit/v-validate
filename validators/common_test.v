@@ -75,8 +75,8 @@ fn test_is_le() {
 fn test_is_in() {
 	mut valid := []CommonType{}
 	valid << 'abc'
-	valid << CommonType(2)
-	valid << CommonType(0.69)
+	valid << 2
+	valid << 0.69
 
 	assert is_in('abc', valid) == true
 	assert is_in('2', valid) == true
@@ -96,13 +96,13 @@ fn test_is_in() {
 fn get_data_eq_ne() (map[string]CommonType, map[string]CommonType) {
 	mut valid := map[string]CommonType
 	valid['string'] = 'string'
-	valid['2'] = CommonType(2)
-	valid['3.14'] = CommonType(3.14)
+	valid['2'] = 2
+	valid['3.14'] = 3.14
 
 	mut invalid := map[string]CommonType
 	invalid['string'] = 'string-2'
-	invalid['2'] = CommonType(3)
-	invalid['2.71'] = CommonType(3.14)
+	invalid['2'] = 3
+	invalid['2.71'] = 3.14
 
 	return valid, invalid
 }
@@ -110,13 +110,13 @@ fn get_data_eq_ne() (map[string]CommonType, map[string]CommonType) {
 fn get_data_gt_lt() (map[string]CommonType, map[string]CommonType) {
 	mut valid := map[string]CommonType
 	valid['ab'] = 'aa'
-	valid['3'] = CommonType(2)
-	valid['3.14'] = CommonType(1.61)
+	valid['3'] = 2
+	valid['3.14'] = 1.61
 
 	mut invalid := map[string]CommonType
 	invalid['aa'] = 'ab'
-	invalid['2'] = CommonType(3)
-	invalid['1.61'] = CommonType(1.61)
+	invalid['2'] = 3
+	invalid['1.61'] = 1.61
 
 	return valid, invalid
 }
@@ -125,15 +125,15 @@ fn get_data_ge_le() (map[string]CommonType, map[string]CommonType) {
 	mut valid := map[string]CommonType
 	valid['ab'] = 'aa'
 	valid['aa'] = 'aa'
-	valid['3'] = CommonType(2)
-	valid['2'] = CommonType(2)
-	valid['3.14'] = CommonType(1.61)
-	valid['6.28'] = CommonType(6.28)
+	valid['3'] = 2
+	valid['2'] = 2
+	valid['3.14'] = 1.61
+	valid['6.28'] = 6.28
 
 	mut invalid := map[string]CommonType
 	invalid['aa'] = 'ab'
-	invalid['2'] = CommonType(3)
-	invalid['1.41'] = CommonType(1.64)
+	invalid['2'] = 3
+	invalid['1.41'] = 1.64
 
 	return valid, invalid
 }
