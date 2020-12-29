@@ -2,7 +2,7 @@ module validators
 
 const (
 	numbers_re_float = r'^(?:[-+]?(?:[0-9]+))?(?:\.[0-9]*)?(?:[eE][-+]?(?:[0-9]+))?$'
-	numbers_re_int   = r'^(?:[-+]?(?:0|[1-9][0-9]*))$'
+	numbers_re_int   = r'^(?:[-+]?(?:(0)|([1-9][0-9]*)))$'
 )
 
 // Checks if the string is a float
