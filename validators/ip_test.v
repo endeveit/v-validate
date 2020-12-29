@@ -62,10 +62,10 @@ fn test_is_ip() {
 		'::0.0.0.256',
 	]
 
-	mut valid := valid_ipv4
+	mut valid := valid_ipv4.clone()
 	valid << valid_ipv6
 
-	mut invalid := invalid_ipv4
+	mut invalid := invalid_ipv4.clone()
 	invalid << invalid_ipv6
 
 	for ip in valid {

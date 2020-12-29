@@ -4,7 +4,7 @@ const (
 	// The regular expression is based on this comment at
 	// stackoverflow - https://stackoverflow.com/a/201378
  	// The author of the comment is bortzmeyer <https://stackoverflow.com/users/15625/bortzmeyer>
-	email_re = '^(?:[-a-zA-Z0-9!#$%&.\'*+/=?^_`{|}~]+)|"(?:[-a-zA-Z0-9!#$%&.\'*+/=?^_`{|}~]+)"$'
+	email_re = '^(?:[-a-zA-Z0-9!#$%&.\'*+/=?^_`{|}~]+)|("(?:[-a-zA-Z0-9!#$%&.\'*+/=?^_`{|}~]+)")$'
 )
 
 // Checks if the string is a valid email address
