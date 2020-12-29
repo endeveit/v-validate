@@ -5,7 +5,6 @@ fn test_is_uuid_v3() {
 		'a987fbc9-4bed-3078-cf07-9141ba07c9f3',
 		'A987FBC9-4BED-3078-CF07-9141BA07C9F3',
 	]
-
 	invalid := [
 		'',
 		'934859',
@@ -18,11 +17,9 @@ fn test_is_uuid_v3() {
 		'xxxa987fbc9-4bed-3078-cf07-9141ba07c9f3',
 		'xxxA987FBC9-4BED-3078-CF07-9141BA07C9F3',
 	]
-
 	for uuid in valid {
 		assert is_uuid_v3(uuid) == true
 	}
-
 	for uuid in invalid {
 		assert is_uuid_v3(uuid) == false
 	}
@@ -39,7 +36,6 @@ fn test_is_uuid_v4() {
 		'9c858901-8a57-4791-81fe-4c455b099bc9',
 		'9C858901-8A57-4791-81FE-4C455B099BC9',
 	]
-
 	invalid := [
 		'',
 		'934859',
@@ -52,11 +48,9 @@ fn test_is_uuid_v4() {
 		'xxxa987fbc9-4bed-3078-cf07-9141ba07c9f3',
 		'xxxA987FBC9-4BED-3078-CF07-9141BA07C9F3',
 	]
-
 	for uuid in valid {
 		assert is_uuid_v4(uuid) == true
 	}
-
 	for uuid in invalid {
 		assert is_uuid_v4(uuid) == false
 	}
@@ -73,7 +67,6 @@ fn test_is_uuid_v5() {
 		'987fbc97-4bed-5078-bf07-9141ba07c9f3',
 		'987FBC97-4BED-5078-BF07-9141BA07C9F3',
 	]
-
 	invalid := [
 		'',
 		'934859',
@@ -86,11 +79,9 @@ fn test_is_uuid_v5() {
 		'xxxa987fbc9-4bed-3078-cf07-9141ba07c9f3',
 		'xxxA987FBC9-4BED-3078-CF07-9141BA07C9F3',
 	]
-
 	for uuid in valid {
 		assert is_uuid_v5(uuid) == true
 	}
-
 	for uuid in invalid {
 		assert is_uuid_v5(uuid) == false
 	}
@@ -105,7 +96,6 @@ fn test_is_uuid() {
 		'a987fbc9-4bed-5078-af07-9141ba07c9f3',
 		'A987FBC9-4BED-5078-AF07-9141BA07C9F3',
 	]
-
 	invalid := [
 		'',
 		'934859',
@@ -120,11 +110,9 @@ fn test_is_uuid() {
 		'xxxa987fbc9-4bed-3078-cf07-9141ba07c9f3',
 		'xxxA987FBC9-4BED-3078-CF07-9141BA07C9F3',
 	]
-
 	for uuid in valid {
 		assert is_uuid(uuid) == true
 	}
-
 	for uuid in invalid {
 		assert is_uuid(uuid) == false
 	}

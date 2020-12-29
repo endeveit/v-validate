@@ -9,7 +9,6 @@ fn test_is_fqdn() {
 		'example.test',
 		'xn--froschgrn-x9a.com',
 	]
-
 	invalid := [
 		'_.com',
 		'*.some.com',
@@ -21,11 +20,9 @@ fn test_is_fqdn() {
 		'domain.com�',
 		's!ome.com',
 	]
-
 	for domain in valid {
 		assert is_fqdn(domain) == true
 	}
-
 	for domain in invalid {
 		assert is_fqdn(domain) == false
 	}

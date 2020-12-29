@@ -2,7 +2,7 @@ module validators
 
 const (
 	numbers_re_float = r'^(?:[-+]?(?:[0-9]+))?(?:\.[0-9]*)?(?:[eE][-+]?(?:[0-9]+))?$'
-	numbers_re_int = r'^(?:[-+]?(?:0|[1-9][0-9]*))$'
+	numbers_re_int   = r'^(?:[-+]?(?:0|[1-9][0-9]*))$'
 )
 
 // Checks if the string is a float
@@ -20,10 +20,8 @@ fn is_number_priv(val string, re_query string) bool {
 	if val.len == 0 {
 		return false
 	}
-
 	if !is_regex_match(val, re_query) {
 		return false
 	}
-
 	return true
 }

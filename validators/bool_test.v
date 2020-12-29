@@ -15,7 +15,6 @@ fn test_is_bool() {
 		'y',
 		'yes',
 	]
-
 	invalid := [
 		' false',
 		' off',
@@ -24,11 +23,9 @@ fn test_is_bool() {
 		'null',
 		'true ',
 	]
-
 	for val in valid {
 		assert is_bool(val) == true
 	}
-
 	for val in invalid {
 		assert is_bool(val) == false
 	}

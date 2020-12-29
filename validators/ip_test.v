@@ -11,7 +11,6 @@ fn test_is_ip() {
 		'255.255.255.255',
 		'127.0.0.0',
 	]
-
 	valid_ipv6 := [
 		'2001:0db8:85a3:0000:0000:8a2e:0370:7334',
 		'2001:0DB8:85A3:0000:0000:8A2E:0370:7334',
@@ -27,13 +26,12 @@ fn test_is_ip() {
 		'0::',
 		'::0',
 		'0::0',
-		// IPv4 mapped to IPv6,
+		/*  IPv4 mapped to IPv6, */
 		'2001:0db8:85a3:0000:0000:8a2e:0.0.0.0',
 		'::0.0.0.0',
 		'::255.255.255.255',
 		'::123.45.67.178',
 	]
-
 	invalid_ipv4 := [
 		'0',
 		'0.0',
@@ -45,14 +43,13 @@ fn test_is_ip() {
 		'-1.0.0.0',
 		'foobar',
 	]
-
 	invalid_ipv6 := [
 		'z001:0db8:85a3:0000:0000:8a2e:0370:7334',
 		'fe80',
 		'fe80:8329',
 		'fe80:::202:b3ff:fe1e:8329',
 		'fe80::202:b3ff::fe1e:8329',
-		// IPv4 mapped to IPv6
+		/*  IPv4 mapped to IPv6 */
 		'2001:0db8:85a3:0000:0000:8a2e:0370:0.0.0.0',
 		'::0.0',
 		'::0.0.0',
@@ -61,17 +58,13 @@ fn test_is_ip() {
 		'::0.0.256.0',
 		'::0.0.0.256',
 	]
-
 	mut valid := valid_ipv4.clone()
 	valid << valid_ipv6
-
 	mut invalid := invalid_ipv4.clone()
 	invalid << invalid_ipv6
-
 	for ip in valid {
 		assert is_ip(ip) == true
 	}
-
 	for ip in invalid {
 		assert is_ip(ip) == false
 	}

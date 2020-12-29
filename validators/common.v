@@ -4,50 +4,32 @@ module validators
 // it's a sum type of the string, any_int, and any_float.
 // <br>
 // n.b.: any_int and any_float are internal intermediate types and could be changed in the future.
-pub type CommonType = any_int | any_float | string
+pub type CommonType = any_float | any_int | string
 
 // Converts the common type to the string
 fn (c CommonType) str() string {
 	match c {
-		any_int {
-			return c.str()
-		}
-		any_float {
-			return c.str()
-		}
-		string {
-			return (c)
-		}
+		any_int { return c.str() }
+		any_float { return c.str() }
+		string { return (c) }
 	}
 }
 
 // Checks if the string is equal to another int, float or string value
 pub fn is_eq(val string, dst CommonType) bool {
 	match dst {
-		any_int {
-			return val.int() == dst
-		}
-		any_float {
-			return val.f64() == dst
-		}
-		string {
-			return val == dst
-		}
+		any_int { return val.int() == dst }
+		any_float { return val.f64() == dst }
+		string { return val == dst }
 	}
 }
 
 // Checks if the string is greater than another int, float or string value
 pub fn is_gt(val string, dst CommonType) bool {
 	match dst {
-		any_int {
-			return val.int() > dst
-		}
-		any_float {
-			return val.f64() > dst
-		}
-		string {
-			return val > dst
-		}
+		any_int { return val.int() > dst }
+		any_float { return val.f64() > dst }
+		string { return val > dst }
 	}
 }
 
@@ -78,6 +60,5 @@ pub fn is_in(val string, values []CommonType) bool {
 			return true
 		}
 	}
-
 	return false
 }
