@@ -1,4 +1,4 @@
-name: Check the code formatting and run tests
+name: CI
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - "**.md"
 
 jobs:
-  test:
+  linux:
     name: Run tests on Linux, V version "${{ matrix.v-version }}"
     strategy:
       matrix:
@@ -36,3 +36,36 @@ jobs:
 
       - name: Run tests
         run: /opt/v/v test .
+
+  macos:
+    name: Run tests on macOS, V version "${{ matrix.v-version }}"
+    strategy:
+      matrix:
+        v-version: [latest, "0.2"]
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Fetch the V version "${{ matrix.v-version }}"
+        uses: tix-factory/release-manager@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          mode: downloadReleaseAsset
+          filePath: /tmp/v_macos.zip
+          assetName: "v_macos.zip"
+          tag: "${{ matrix.v-version }}"
+          repo: v
+          owner: vlang
+
+      - name: Setup V
+        run: |
+          unzip -q /tmp/v_macos.zip -d /tmp
+          /tmp/v/v version
+
+      - name: Check the formatting
+        run: /tmp/v/v test-fmt
+
+      - name: Run tests
+        run: /tmp/v/v test .
