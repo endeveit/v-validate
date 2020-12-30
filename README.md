@@ -1,4 +1,7 @@
 # A simple library to validate strings in the V language
+
+[![CI](https://github.com/endeveit/v-validate/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/endeveit/v-validate/commits/master)
+
 The main purpose of this library is to validate the user input in the web applications.
 Due to the nature of the input in the web (it's almost always strings), the main focus is on validating **strings**.
 
